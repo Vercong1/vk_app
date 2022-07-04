@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-abstract class AppTextFieldStyle {
+abstract class AppTextFieldLoginStyle {
   static final InputDecoration LinkButton = InputDecoration(
     border: OutlineInputBorder(),
     contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -11,7 +11,35 @@ abstract class AppTextFieldStyle {
     hintStyle:
         TextStyle(fontSize: 15, color: Color.fromARGB(255, 145, 144, 144)),
   );
-} // стиль для авторизации TextField
+} 
+
+abstract class AppTextFieldPasswordStyle {
+  static final InputDecoration LinkButton = InputDecoration(
+    border: OutlineInputBorder(),
+    contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+    isCollapsed: true,
+    hintText: "Введите пароль",
+    filled: true,
+    fillColor: Color.fromARGB(255, 236, 236, 236),
+    hintStyle:
+        TextStyle(fontSize: 15, color: Color.fromARGB(255, 145, 144, 144)),
+  );
+} 
+
+
+abstract class AppAuthTitleStyle {
+  static final TextStyle LinkButton = TextStyle(
+  color: Colors.black, fontSize: 21);
+} 
+
+abstract class AppDescribeTittleStyle {
+  static final TextStyle LinkButton = TextStyle(
+  color:  Colors.grey, fontSize: 15);
+} 
+
+
+
+// стиль для авторизации TextField
 
 // abstract class AppElevatedButtonStyle {
 //   static final ButtonStyle LinkButton =  ButtonStyle(

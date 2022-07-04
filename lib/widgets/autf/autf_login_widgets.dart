@@ -57,11 +57,11 @@ class _MainInfoWidget extends StatelessWidget {
           ),
           SizedBox(height: 20),
           Text('Введите номер',
-              style: TextStyle(color: Colors.black, fontSize: 21)),
+              style: AppAuthTitleStyle.LinkButton),
           SizedBox(height: 20),
           Text(
             'Ваш номер телефона будет использоваться для входа в аккаунт',
-            style: TextStyle(color: Colors.grey, fontSize: 15),
+            style: AppDescribeTittleStyle.LinkButton,
             textAlign: TextAlign.center,
           ),
           _AurButtnonWidghet(),
@@ -79,21 +79,24 @@ class _AurButtnonWidghet extends StatefulWidget {
 }
 
 class __AurButtnonWidghetState extends State<_AurButtnonWidghet> {
+  
+
   final _textController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   // Color red is button is disabled and green is enabled. you can change as per you requirement.
   final successColor =
       MaterialStateProperty.all(Color.fromARGB(255, 62, 126, 199));
   final errorColor =
-      MaterialStateProperty.all(Color.fromARGB(255, 145, 144, 144));
+      MaterialStateProperty.all(Color.fromARGB(255, 195, 205, 230));
 
   final richBotton = const TextStyle(
     color: Color.fromARGB(255, 117, 117, 117),
     fontSize: 11,
-  ); // textAlign: TextAlign.center;
+  ); 
   final text = const TextStyle(color: Colors.grey, fontSize: 11);
   bool isValid = false;
   @override
+
   void initState() {
     super.initState();
     _textController.addListener(() {
@@ -120,7 +123,7 @@ class __AurButtnonWidghetState extends State<_AurButtnonWidghet> {
           children: [
             TextFormField(
               controller: _textController,
-              decoration: AppTextFieldStyle.LinkButton,
+              decoration: AppTextFieldLoginStyle.LinkButton,
               validator: (value) {
                 () {};
               },
@@ -133,6 +136,7 @@ class __AurButtnonWidghetState extends State<_AurButtnonWidghet> {
                         Navigator.of(context).pushNamed('/password_screen');
                         // go  further.
                       },
+                      
                 style: ButtonStyle(
                     backgroundColor: isValid ? successColor : errorColor,
                     minimumSize: MaterialStateProperty.all(Size.fromHeight(1)),

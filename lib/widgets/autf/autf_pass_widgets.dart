@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:vk_app/Theme/button_style.dart';
+import 'package:vk_app/widgets/autf/autf_login_widgets.dart';
 
 class AutfPasswordWidget extends StatefulWidget {
   AutfPasswordWidget({Key? key}) : super(key: key);
@@ -16,18 +17,22 @@ class _AutfPasswordWidgetState extends State<AutfPasswordWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        leading: BackButton(
+        color: Colors.grey
+   ), 
           elevation: 0,
-          title: Center(
-              child: Row(
+          title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min, // Иконка по центру несмотря на кнопку назад
             children: [
-              Icon(Icons.telegram_sharp, color: iconColor),
-              Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 2, vertical: 2)),
-              Text('ID', style: TextStyle(color: Colors.black, fontSize: 18)),
+          Icon(Icons.telegram_sharp, color: iconColor),
+          Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 2, vertical: 2)),
+          Text('ID', style: TextStyle(color: Colors.black, fontSize: 18)),
             ],
-          ))),
+          )),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: ListView(
@@ -41,9 +46,13 @@ class _AutfPasswordWidgetState extends State<AutfPasswordWidget> {
 }
 
 class _MainInfoWidget extends StatelessWidget {
+
   const _MainInfoWidget({Key? key}) : super(key: key);
 
+
   @override
+
+  
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
@@ -57,11 +66,11 @@ class _MainInfoWidget extends StatelessWidget {
           ),
           SizedBox(height: 20),
           Text('Введите пароль',
-              style: TextStyle(color: Colors.black, fontSize: 21)),
+              style: AppAuthTitleStyle.LinkButton),
           SizedBox(height: 20),
           Text(
-            'Используйте пароль, указанный при регистрации c ""',
-            style: TextStyle(color: Colors.grey, fontSize: 15),
+            'Используйте пароль, указанный при регистрации c (Entered Text)' ,
+            style: AppDescribeTittleStyle.LinkButton,
             textAlign: TextAlign.center,
           ),
           _AurButtnonWidghet(),
@@ -85,7 +94,7 @@ class __AurButtnonWidghetState extends State<_AurButtnonWidghet> {
   final successColor =
       MaterialStateProperty.all(Color.fromARGB(255, 62, 126, 199));
   final errorColor =
-      MaterialStateProperty.all(Color.fromARGB(255, 145, 144, 144));
+      MaterialStateProperty.all(Color.fromARGB(255, 195, 205, 230));
 
   final richBotton = const TextStyle(
     color: Color.fromARGB(255, 117, 117, 117),
@@ -120,16 +129,40 @@ class __AurButtnonWidghetState extends State<_AurButtnonWidghet> {
           children: [
             TextFormField(
               controller: _textController,
-              decoration: AppTextFieldStyle.LinkButton,
+              obscureText: true, // введеный текст скрывается
+              decoration: AppTextFieldPasswordStyle.LinkButton,
               validator: (value) {
                 () {};
               },
             ),
-            SizedBox(height: 15),
+            SizedBox(height: 10),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                RichText(
+                    text: TextSpan(
+                    children: [
+                      TextSpan(
+                          text: 'Забыли или не установили пароль?',
+                          style: TextStyle( color: Color(0xFF4896CC),fontSize: 14, fontWeight: FontWeight.w500),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              print('21321');
+                            }),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+
+            
+            SizedBox(height: 35),
             ElevatedButton(
                 onPressed: !isValid
                     ? null
                     : () {
+                          Navigator.of(context).pushNamed('/main_screen');                
                         // go  further.
                       },
                 style: ButtonStyle(
@@ -146,72 +179,6 @@ class __AurButtnonWidghetState extends State<_AurButtnonWidghet> {
 
             // style: ButtonStyle(backgroundColor: MaterialStateProperty.all (Color(0xFF4986CC)), minimumSize: MaterialStateProperty.all (Size.fromHeight(1)), // кнопка на всю ширину с адаптивной высотой
             //       foregroundColor: MaterialStateProperty.all (Colors.white),           цвета для кнопки активной
-
-            RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: 'Нажимая «Продолжить», вы принимаете ',
-                    style: text,
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        // Single tapped.
-                      },
-                  ),
-                  TextSpan(
-                    text: 'пользовательское соглашение ',
-                    style: richBotton,
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        print('asdsa');
-                        // Single tapped.
-                      },
-                  ),
-                  TextSpan(
-                    text: 'и',
-                    style: text,
-                    // recognizer:  DoubleTapGestureRecognizer()..onDoubleTap = () {
-                    //   // Double tapped.
-                    // }
-                  ),
-                  TextSpan(
-                      text: ' политику конфиденциальности.',
-                      style: richBotton,
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          print('wqe2');
-                        }
-                      // recognizer: LongPressGestureRecognizer()..onLongPress = () {
-                      //   // Long Pressed.
-                      // },
-                      ),
-                ],
-              ),
-            ),
-            SizedBox(height: 5),
-
-            RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                      text: 'Передаваемые данные',
-                      style: richBotton,
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          print('21321');
-                        }),
-                  WidgetSpan(
-                      alignment: PlaceholderAlignment.middle,
-                      child: Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.grey,
-                        size: 11,
-                      )),
-                ],
-              ),
-            ),
           ],
         ),
       ),
